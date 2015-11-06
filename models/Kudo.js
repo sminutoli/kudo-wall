@@ -1,10 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema;
 
 var kudoSchema = new Schema({
   autor: String,
-  kudo: Boolean,
-  updated_at: { type: Date, default: Date.now },
+  para: String,
+  por: String,
+  updated_at: { type: Date, default: Date.now } //expires: 604800
 });
 
 var Kudo = mongoose.model('Kudo', kudoSchema);

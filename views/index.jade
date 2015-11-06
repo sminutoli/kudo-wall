@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  ul
+    each kudo in kudos
+      div
+        p Kudos para #{kudo.para} por
+        p!= md(kudo.por)
+        p -- #{kudo.autor}
