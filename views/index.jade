@@ -1,9 +1,0 @@
-extends layout
-
-block content
-  ul
-    each kudo in kudos
-      div
-        p Kudos para #{kudo.para} por
-        p!= md(kudo.por)
-        p -- #{kudo.autor}

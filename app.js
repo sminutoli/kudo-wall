@@ -1,8 +1,15 @@
+
+/**
+ * Module dependencies.
+ */
+
 var express = require('express')
   , kudos = require('./routes/kudos')
   , http = require('http')
   , path = require('path')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , exphbs  = require('express-handlebars'),
+    hbshelpers = require('./lib/handlebarsHelpers');
   
 var favicon = require('serve-favicon')
   , logger = require('morgan')
@@ -25,7 +32,11 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.engine('handlebars', exphbs({
+                            defaultLayout: 'main',
+                            helpers: hbshelpers
+                        }));
+app.set('view engine', 'handlebars');
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(methodOverride());
