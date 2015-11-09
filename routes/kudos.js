@@ -48,10 +48,8 @@ router.post('/', function(req, res, next) {
     
   var kudo = {
       autor: req.body.user_name,
-      para: sanitizeHtml(mensaje[1]),
-      por: sanitizeHtml(mensaje[2]) }
-  
-  console.log(kudo);
+      para: sanitizar(mensaje[1]),
+      por: sanitizar(mensaje[2]) }
     
   Kudo.create(kudo, function (err, kudo) {
     if (err) return next(err);
