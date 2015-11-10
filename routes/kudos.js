@@ -46,7 +46,17 @@ router.post('/', function(req, res, next) {
     
   Kudo.create(kudo, function (err, kudo) {
     if (err) return next(err);
-    res.send(`Gracias por dejar tu Kudo! _([Editar](https://kudos-florius2.c9users.io/${kudo._id}))_`);
+    var respuesta = {
+                      "text": "Gracias por dejar tu Kudo!",
+                      "attachments": [
+                                      {
+                                        "title":"Editar / Borrar el nuevo Kudo",
+                                        "title_link": `https://kudos-florius2.c9users.io/${kudo._id}`
+                                      }
+                                    ]
+                    };
+    console.log(respuesta);
+    res.send(respuesta);
   });
 });
 
