@@ -8,8 +8,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mongoose = require('mongoose')
-  , exphbs  = require('express-handlebars'),
-    hbshelpers = require('./lib/handlebarsHelpers');
+  , exphbs  = require('express-handlebars')
+  , hbshelpers = require('./lib/handlebarsHelpers');
   
 var favicon = require('serve-favicon')
   , logger = require('morgan')
@@ -18,8 +18,7 @@ var favicon = require('serve-favicon')
   , multer = require('multer')
   , errorHandler = require('errorhandler');
 
-
-mongoose.connect(`mongodb://${process.env.IP}/kudos`, function(err) {
+mongoose.connect(`mongodb://${process.env.IP || 'localhost'}/kudos`, function(err) {
     if(err) {
         console.log('connection error', err);
     } else {

@@ -1,33 +1,32 @@
 var express = require('express')
   , Kudo = require('../models/Kudo')
   , router = express.Router()
-  , md = require("node-markdown").Markdown
-  , sanitizeHtml = require('sanitize-html');
+  , sanitizar = require('../helpers/sanitizar');
 
 router.get('/json', function(req, res, next){
   Kudo.find(function (err, kudos) {
     if (err) return next(err);
     res.json(kudos);
   });
-})
+});
 
 router.get('/:id', function(req, res, next) {
   Kudo.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
-})
+});
 
 router.get('/', function(req, res, next){
   Kudo.find(function (err, kudos) {
     if (err) return next(err);
     
-    res.render('index', { kudos: kudos, md: md });
+    res.render('index', { kudos: kudos });
   });
-})
+});
 
 router.post('/', function(req, res, next) {
-  if(req.body.token != 'Ynf8waHd1mgwA3OF2gKZSTd2'){
+  if(req.body.token != (process.env.TOKEN || 'Ynf8waHd1mgwA3OF2gKZSTd2')){
     res.send('Hmmmmm.... algo no está bien');
     return;
   }
@@ -39,17 +38,11 @@ router.post('/', function(req, res, next) {
     return;
   }
     
-  var sanitizar = function(mensaje){
-    return sanitizeHtml(mensaje, {
-      allowedTags: [],
-      allowedAttributes: []
-    })
-  }
-    
   var kudo = {
       autor: req.body.user_name,
-      para: sanitizeHtml(mensaje[1]),
-      por: sanitizeHtml(mensaje[2]) }
+      para: sanitizar(mensaje[1]),
+      por: sanitizar(mensaje[2])
+  };
   
   console.log(kudo);
     
@@ -57,7 +50,7 @@ router.post('/', function(req, res, next) {
     if (err) return next(err);
     res.send(`Gracias por dejar tu Kudo! _(id: ${kudo._id})_`);
   });
-})
+});
 
 router.delete('/:id', function(req, res, next) {
   Kudo.findByIdAndRemove(req.params.id, req.body, function (err, post) {
