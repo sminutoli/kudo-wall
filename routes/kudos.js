@@ -11,9 +11,9 @@ router.get('/json', function(req, res, next){
 });
 
 router.get('/:id', function(req, res, next) {
-  Kudo.findById(req.params.id, function (err, post) {
+  Kudo.findById(req.params.id, function (err, kudo) {
     if (err) return next(err);
-    res.json(post);
+    res.render('edit', { kudo: kudo });
   });
 });
 
@@ -43,26 +43,24 @@ router.post('/', function(req, res, next) {
       para: sanitizar(mensaje[1]),
       por: sanitizar(mensaje[2])
   };
-  
-  console.log(kudo);
     
   Kudo.create(kudo, function (err, kudo) {
     if (err) return next(err);
-    res.send(`Gracias por dejar tu Kudo! _(id: ${kudo._id})_`);
+    res.send(`Gracias por dejar tu Kudo! _([Editar](https://kudos-florius2.c9users.io/${kudo._id}))_`);
   });
 });
 
 router.delete('/:id', function(req, res, next) {
-  Kudo.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Kudo.findByIdAndRemove(req.params.id, req.body, function (err, kudo) {
     if (err) return next(err);
-    res.json(post);
+    res.redirect(200, '/');
   });
 });
 
 router.put('/:id', function(req, res, next) {
-  Kudo.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  Kudo.findByIdAndUpdate(req.params.id, req.body, function (err, kudo) {
     if (err) return next(err);
-    res.json(post);
+    res.redirect(200, 'back');
   });
 });
 

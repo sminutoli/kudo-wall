@@ -13,6 +13,7 @@ var express = require('express')
   
 var favicon = require('serve-favicon')
   , logger = require('morgan')
+  , connect        = require('connect')
   , methodOverride = require('method-override')
   , bodyParser = require('body-parser')
   , multer = require('multer')
@@ -38,7 +39,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(methodOverride());
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
