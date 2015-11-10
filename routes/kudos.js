@@ -45,11 +45,17 @@ router.post('/', function(req, res, next) {
       allowedAttributes: []
     })
   }
+  
+  var elejirImagen = function(){
+    return Math.floor(Math.random()*6);
+  }
     
   var kudo = {
       autor: req.body.user_name,
       para: sanitizar(mensaje[1]),
-      por: sanitizar(mensaje[2]) }
+      por: sanitizar(mensaje[2]),
+      imagen: elejirImagen()
+  }
     
   Kudo.create(kudo, function (err, kudo) {
     if (err) return next(err);
