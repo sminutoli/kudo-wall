@@ -6,3 +6,52 @@ body {
 a {
   color: #00B7FF;
 }
+
+footer {
+  clear: both;
+}
+
+.kudo {
+  height:450px;
+  width:650px;
+  background-color: white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 24px;
+  border: 1px solid gray;
+  margin: 2em;
+  float: left;
+}
+
+.kudo .header {
+  background-color: red;
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  height: 70px;
+  line-height:70px
+}
+
+.kudo .divisor{
+  margin-top: -5px;
+  height:10px;
+  width:100%;
+  background:url('../imagenes/divisor.png');
+}
+
+.kudo .content {
+  background:url('../imagenes/renglon.jpg');
+  margin: 30px;
+  min-height: 315px;
+  line-height: 36px;
+}
+
+.kudo .firma {
+  text-align: right;
+}
+
+.kudo img {
+  float: right;
+  margin: 0.5em;
+  max-height: 200px;
+  max-width: 120px;
+}
