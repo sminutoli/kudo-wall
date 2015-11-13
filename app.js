@@ -8,18 +8,18 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mongoose = require('mongoose')
-  , exphbs  = require('express-handlebars'),
-    hbshelpers = require('./lib/handlebarsHelpers');
+  , exphbs  = require('express-handlebars')
+  , hbshelpers = require('./lib/handlebarsHelpers');
   
 var favicon = require('serve-favicon')
   , logger = require('morgan')
+  , connect        = require('connect')
   , methodOverride = require('method-override')
   , bodyParser = require('body-parser')
   , multer = require('multer')
   , errorHandler = require('errorhandler');
 
-
-mongoose.connect(`mongodb://${process.env.IP}/kudos`, function(err) {
+mongoose.connect(`mongodb://${process.env.IP || 'localhost'}/kudos`, function(err) {
     if(err) {
         console.log('connection error', err);
     } else {
@@ -39,7 +39,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(methodOverride());
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
