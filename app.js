@@ -19,7 +19,7 @@ var favicon = require('serve-favicon')
   , errorHandler = require('errorhandler');
 
 
-mongoose.connect(`mongodb://${process.env.IP}/kudos`, function(err) {
+mongoose.connect(process.env.MONGOLAB_URI, function(err) {
     if(err) {
         console.log('connection error', err);
     } else {
