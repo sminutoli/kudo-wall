@@ -5,6 +5,7 @@ var kudoSchema = new Schema({
   autor: String,
   para: String,
   por: String,
+  imagen: Number,
   updated_at: { type: Date, default: Date.now } //expires: 604800
 });
 

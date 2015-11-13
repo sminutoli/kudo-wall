@@ -1,9 +1,5 @@
-<ul>
 {{#each kudos}}
-  <div>
-    <p>Kudos para {{para}} por</p>
-    <p>{{md por}}</p>
-    <p>-- {{autor}}</p>
+  <div class="container">
+    {{> kudo this}}
   </div>
 {{/each}}
-</ul>

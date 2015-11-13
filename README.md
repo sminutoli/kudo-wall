@@ -6,4 +6,4 @@ Simplemente hacer:
 1. `./mongod` Para correr la base de datos
 2. `node app` Para correr Node.json
 
-La aplicacion estaria corriendo en: [c9.io/kudos-florius](https://kudos-florius2.c9users.io/)
+La aplicacion estaria corriendo en: [c9.io/kudos-florius](https://kudo-wall-10p.herokuapp.com/)
