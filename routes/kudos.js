@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
     return;
   }
   
-  var elejirImagen = function(){
+  var elegirImagen = function(){
     return Math.floor(Math.random()*6);
   }
     
@@ -46,7 +46,7 @@ router.post('/', function(req, res, next) {
       autor: req.body.user_name,
       para: sanitizar(mensaje[1]),
       por: sanitizar(mensaje[2]),
-      imagen: elejirImagen()
+      imagen: elegirImagen()
   }
     
   Kudo.create(kudo, function (err, kudo) {
