@@ -7,6 +7,12 @@ footer {
   clear: both;
 }
 
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .kudo {
   height:450px;
   width:650px;
@@ -25,7 +31,7 @@ footer {
   vertical-align: middle;
   height: 70px;
   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-  line-height:70px
+  line-height:70px;
 }
 
 .kudo .divisor{
