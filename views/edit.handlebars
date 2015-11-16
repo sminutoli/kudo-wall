@@ -1,17 +1,14 @@
 <div class="kudo">
-    <form method="post" action="?_method=PUT">
+    <form method="post" action="">
     <div class="header nowrap">Kudos para <input name="para" value="{{para}}"></div>
     <div class="divisor"></div>
     <img src="imagenes/art/{{imagen}}.png"/>
     <div class="content nowrap">
-        <textarea>
-            {{por}}
-        </textarea>
+        <textarea name="por">{{por}}</textarea>
         <div class="firma">-- <i>{{autor}}</i></div>
     </div>
-    </form>
-    <form method="post" action="?_method=DELETE">
-        <input type="submit" value="Borrar">
+    <input type="submit" value="Editar" formaction="?_method=PUT">
+    <input type="submit" value="Borrar" formaction="?_method=DELETE">
     </form>
 </div>
 
