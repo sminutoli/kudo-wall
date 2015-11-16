@@ -56,7 +56,7 @@ router.post('/', function(req, res, next) {
                       "attachments": [
                                       {
                                         "title":"Editar / Borrar el nuevo Kudo",
-                                        "title_link": `${process.env.URL || 'localhost'}/${kudo._id}`
+                                        "title_link": `http://${process.env.URL || 'localhost'}/${kudo._id}`
                                       }
                                     ]
                     };
@@ -73,9 +73,14 @@ router.delete('/:id', function(req, res, next) {
 });
 
 router.put('/:id', function(req, res, next) {
+  req.body.para = sanitizar(req.body.para);
+  req.body.por = sanitizar(req.body.por);
+  
+  console.log(req.body);
+  
   Kudo.findByIdAndUpdate(req.params.id, req.body, function (err, kudo) {
     if (err) return next(err);
-    res.redirect(200, 'back');
+    res.redirect(200, req.params.id);
   });
 });
 
