@@ -13,7 +13,7 @@ router.get('/json', function(req, res, next){
 router.get('/:id', function(req, res, next) {
   Kudo.findById(req.params.id, function (err, kudo) {
     if (err) return next(err);
-    res.render('edit', { kudo: kudo });
+    res.render('edit', kudo);
   });
 });
 
@@ -56,7 +56,7 @@ router.post('/', function(req, res, next) {
                       "attachments": [
                                       {
                                         "title":"Editar / Borrar el nuevo Kudo",
-                                        "title_link": `https://kudos-florius2.c9users.io/${kudo._id}`
+                                        "title_link": `${process.env.URL || 'localhost'}/${kudo._id}`
                                       }
                                     ]
                     };
