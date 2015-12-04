@@ -34,20 +34,20 @@ router.post('/', function(req, res, next) {
   var mensaje = req.body.text.match(/a (.*) por (.*)/i);
  
   if(mensaje === null || mensaje.length != 3){
-    res.send('El formato del Kudo debe ser: `/kudo a [alguien] por [algo]`.');
+    res.send('El formato del Kudo debe ser: `/kudo para [alguien] por [algo]`.');
     return;
   }
   
   var elegirImagen = function(){
     return Math.floor(Math.random()*6);
-  }
+  };
     
   var kudo = {
       autor: req.body.user_name,
       para: sanitizar(mensaje[1]),
-      por: sanitizar(mensaje[2]),
+      por: "*por* " + sanitizar(mensaje[2]),
       imagen: elegirImagen()
-  }
+  };
     
   Kudo.create(kudo, function (err, kudo) {
     if (err) return next(err);
@@ -56,7 +56,7 @@ router.post('/', function(req, res, next) {
                       "attachments": [
                                       {
                                         "title":"Editar / Borrar el nuevo Kudo",
-                                        "title_link": `http://${process.env.URL || 'localhost'}/${kudo._id}`
+                                        "title_link": `http://${process.env.URL || 'localhost:3000'}/${kudo._id}`
                                       }
                                     ]
                     };
