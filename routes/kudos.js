@@ -26,7 +26,7 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next) {
-  if(req.body.token != (process.env.TOKEN || 'Ynf8waHd1mgwA3OF2gKZSTd2')){
+  if(req.body.token != (process.env.TOKEN || 'Tis a token')){
     res.send('Hmmmmm.... algo no está bien');
     return;
   }

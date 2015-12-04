@@ -1,8 +1,3 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express')
   , kudos = require('./routes/kudos')
   , http = require('http')
