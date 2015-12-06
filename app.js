@@ -12,9 +12,10 @@ var favicon = require('serve-favicon')
   , methodOverride = require('method-override')
   , bodyParser = require('body-parser')
   , multer = require('multer')
-  , errorHandler = require('errorhandler');
+  , errorHandler = require('errorhandler')
+  , config = require('./config');
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/kudos', function(err) {
+mongoose.connect(config.db.mongodb, function(err) {
     if(err) {
         console.log('connection error', err);
     } else {
@@ -25,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/kudos', function(
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.port);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
                             defaultLayout: 'main',
