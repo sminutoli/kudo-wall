@@ -5,7 +5,7 @@ var express = require('express')
   , mongoose = require('mongoose')
   , exphbs  = require('express-handlebars')
   , hbshelpers = require('./lib/handlebarsHelpers');
-  
+
 var favicon = require('serve-favicon')
   , logger = require('morgan')
   , connect        = require('connect')
@@ -26,7 +26,7 @@ mongoose.connect(config.db.mongodb, function(err) {
 var app = express();
 
 // all environments
-app.set('port', config.port);
+app.set('port', config.application.port);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
                             defaultLayout: 'main',
@@ -50,6 +50,6 @@ if ('development' == app.get('env')) {
 }
 
 var server = http.createServer(app);
-server.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+server.listen(config.application.port, function(){
+  console.log('Express server listening on port ' + config.application.port);
 });
