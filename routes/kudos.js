@@ -21,7 +21,7 @@ router.get('/', function(req, res, next){
     if (err) return next(err);
 
     res.render('index', { kudos: kudos });
-  });
+  }).sort({updated_at: 'desc'});
 });
 
 router.post('/', function(req, res, next) {

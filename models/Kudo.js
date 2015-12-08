@@ -8,7 +8,7 @@ var kudoSchema = new Schema({
   para: String,
   por: String,
   imagen: Number,
-  updated_at: { type: Date, default: Date.now } //expires: 604800
+  updated_at: { type: Date, default: Date.now, expires: '8 days' }
 });
 
 var Kudo = mongoose.model('Kudo', kudoSchema);
