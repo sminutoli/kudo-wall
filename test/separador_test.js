@@ -1,5 +1,5 @@
 var expect = require('expect.js')
-  , interpretar = require('../helpers/interpretar.js');
+  , interpretar = require('../helpers/interpretar');
 
 describe('Interpretador', function(){
     it('debería separar un mensaje correcto bien', function(done){

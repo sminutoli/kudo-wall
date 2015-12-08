@@ -1,6 +1,7 @@
 var express = require('express')
   , Kudo = require('../models/Kudo')
   , router = express.Router()
+  , interpretar = require('../helpers/interpretar');
   , sanitizar = require('../helpers/sanitizar');
 
 router.get('/json', function(req, res, next){
@@ -30,12 +31,13 @@ router.post('/', function(req, res, next) {
     res.send('Hmmmmm.... algo no está bien');
     return;
   }
-    
-  var mensaje = req.body.text.match(/a (.*) por (.*)/i);
- 
-  if(mensaje === null || mensaje.length != 3){
-    res.send('El formato del Kudo debe ser: `/kudo para [alguien] por [algo]`.');
-    return;
+
+  var mensaje;
+  try{
+      mensaje = interpreta(req.body.text);
+  } catch(e){
+    res.send(e.message);
+    throw e
   }
   
   var elegirImagen = function(){
@@ -44,8 +46,8 @@ router.post('/', function(req, res, next) {
     
   var kudo = {
       autor: req.body.user_name,
-      para: sanitizar(mensaje[1]),
-      por: "*por* " + sanitizar(mensaje[2]),
+      para: sanitizar(mensaje.para),
+      por: "*por* " + sanitizar(mensaje.por),
       imagen: elegirImagen()
   };
     
