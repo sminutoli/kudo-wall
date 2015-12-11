@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+  , moment = require('moment')
   , Schema = mongoose.Schema
   , interpretar = require('../helpers/interpretar')
   , sanitizar = require('../helpers/sanitizar');
@@ -8,7 +9,7 @@ var kudoSchema = new Schema({
   para: String,
   por: String,
   imagen: Number,
-  updated_at: { type: Date, default: Date.now, expires: '8 days' }
+  updated_at: { type: Date, default: Date.now }
 });
 
 var Kudo = mongoose.model('Kudo', kudoSchema);
@@ -50,6 +51,15 @@ Kudo.actualizar = function(id, nuevoKudo, cb){
   cb = cb || _identity;
   sanitizarKudo(nuevoKudo);
   return Kudo.findByIdAndUpdate(id, nuevoKudo, cb);
+}
+
+Kudo.encontrarUltimos = function(cb){
+  var ultimaSemana = moment().subtract(8, 'days');
+  return Kudo.find({
+      updated_at: {
+        $gte: ultimaSemana.toDate()
+      }
+    }, cb);
 }
 
 module.exports = Kudo;

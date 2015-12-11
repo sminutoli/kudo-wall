@@ -17,7 +17,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next){
-  Kudo.find(function (err, kudos) {
+  Kudo.encontrarUltimos(function (err, kudos) {
     if (err) return next(err);
 
     res.render('index', { kudos: kudos });
