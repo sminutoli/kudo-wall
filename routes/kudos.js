@@ -24,7 +24,7 @@ router.get('/', function(req, res, next){
   }).sort({updated_at: 'desc'});
 });
 
-router.post('/', function(req, res, next) {
+router.post('/nuevo', function(req, res, next) {
   if(req.body.token != (process.env.TOKEN || 'Tis a token')){
     res.send('Hmmmmm.... algo no está bien');
     return;
