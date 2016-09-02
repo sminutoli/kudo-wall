@@ -31,5 +31,13 @@ describe('Interpretador', function(){
         expect( iterpretado  ).to.have.property('por', 'ser tan groso');
 
         done();
+    });
+    it('debería tomar el primer "por" cuando hay más de uno', function (done) {
+        var interpretado = interpretar('para mi por ser tan groso y por mi humildad');
+
+        expect(interpretado).to.have.property('para', 'mi');
+        expect(interpretado).to.have.property('por', 'ser tan groso y por mi humildad');
+
+        done();
     })
 });
