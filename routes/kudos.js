@@ -32,6 +32,7 @@ router.post('/nuevo', function(req, res, next) {
 
   try{
     Kudo.armar( req.body.text, req.body.user_name, function(kudoCreado){
+      console.log(kudoCreado);
       res.send({
               "text": "Gracias por dejar tu Kudo!",
               "attachments": [{
