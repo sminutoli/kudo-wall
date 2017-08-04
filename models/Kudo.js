@@ -41,10 +41,23 @@ Kudo.armar = function(texto, autor, cb){
 
     sanitizarKudo(kudo);
 
-    return Kudo.create(kudo, function (err, kudo) {
-      if (err) return next(err);
-      return cb(kudo);
-    });
+    Kudo
+      .find({})
+      .where('autor').equals(kudo.autor)
+      .where('para').equals(kudo.para)
+      .where('por').equals(kudo.por)
+      .limit(1)
+      .exec(function(err, res){
+        if (err) return next(err);
+        if(res.length == 0){
+          return Kudo.create(kudo, function (err, kudo) {
+            if (err) return next(err);
+            cb(kudo);
+          });
+        } else {
+          cb(res[0]);
+        }
+      });
 };
 
 Kudo.actualizar = function(id, nuevoKudo, cb){
