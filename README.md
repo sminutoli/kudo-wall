@@ -1,4 +1,4 @@
-# Virtual Kudo Wall
+# Virtual Kudo Wall [![Build Status](https://travis-ci.org/10Pines/kudo-wall.svg?branch=master)](https://travis-ci.org/10Pines/kudo-wall)
 ## For 10Pines slack integration
 
 ### Environment
