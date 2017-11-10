@@ -9,6 +9,7 @@
     "test": "mocha --reporter list"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.5.2",
     "connect": "^3.4.0",
     "errorhandler": "^1.1.1",
