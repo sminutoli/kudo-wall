@@ -2,8 +2,10 @@
   "name": "kudos",
   "version": "0.0.1",
   "private": true,
+  "main": "app",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon --inspect --debug-brk",
+    "local-db": "./mongod",
     "test": "mocha --reporter list"
   },
   "dependencies": {
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "nodemon": "^1.12.1"
   }
 }

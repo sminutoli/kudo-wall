@@ -15,11 +15,11 @@ var favicon = require('serve-favicon')
   , errorHandler = require('errorhandler')
   , config = require('./config');
 
-mongoose.connect(config.db.mongodb, function(err) {
+mongoose.createConnection(config.db.mongodb, function(err) {
     if(err) {
-        console.log('connection error', err);
+        console.log('Database connection error', err);
     } else {
-        console.log('connection successful');
+        console.log('Database connection successful');
     }
 });
 
