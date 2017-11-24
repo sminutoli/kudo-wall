@@ -1,5 +1,4 @@
-var sanitizeHtml = require('sanitize-html')
-  , md = require('node-markdown').Markdown;
+var sanitizeHtml = require('sanitize-html');
 
 module.exports =  function(mensaje){
     var sinHTML = sanitizeHtml(mensaje, {

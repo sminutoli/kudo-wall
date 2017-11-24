@@ -3,4 +3,4 @@ services:
 language: node_js
 node_js:
   - "8"
-script: cd app && npm install && npm run test
+script: cd app && yarn install && yarn test

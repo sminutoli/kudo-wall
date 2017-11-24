@@ -9,7 +9,6 @@ var express = require('express')
   , connect        = require('connect')
   , methodOverride = require('method-override')
   , bodyParser = require('body-parser')
-  , multer = require('multer')
   , errorHandler = require('errorhandler')
   , config = require('../config');
 
@@ -29,7 +28,6 @@ module.exports.start = function(){
     app.use(methodOverride('_method'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(multer());
     app.use(express.static(path.join(__dirname, '..', 'public')));
 
 
