@@ -18,7 +18,7 @@ module.exports.start = function(){
 
     // all environments
     app.set('port', config.application.port);
-    app.set('views', path.join(__dirname, 'views'));
+    app.set('views', path.join(__dirname, '..', 'views'));
     app.engine('handlebars', exphbs({
                                 defaultLayout: 'main',
                                 helpers: hbshelpers
@@ -30,7 +30,7 @@ module.exports.start = function(){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(multer());
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, '..', 'public')));
 
 
     app.use('/', kudos);
