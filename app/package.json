@@ -4,7 +4,8 @@
   "private": true,
   "main": "app",
   "scripts": {
-    "start": "nodemon --inspect=0.0.0.0:9229",
+    "start": "node app.js",
+    "dev": "nodemon --inspect=0.0.0.0:9229",
     "test": "mocha --reporter list"
   },
   "dependencies": {

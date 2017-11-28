@@ -1,0 +1,7 @@
+{
+    "name": "kudo-wall-app",
+    "version": "0.1.0",
+    "scripts": {
+      "postinstall": "npm install --prefix app"
+    }
+  }
