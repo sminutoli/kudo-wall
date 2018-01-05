@@ -5,6 +5,7 @@ body, html {
 }
 
 #main {
+  padding: 2em;
   width: 1500px;
   padding-bottom: 102px;
   margin: auto;
@@ -60,49 +61,6 @@ header .logo {
 }
 
 .kudo {
-  min-height:450px;
-  width:650px;
-  background-color: white;
-  font-family: 'Indie Flower', cursive;
-  font-size: 24px;
-  border: 1px solid gray;
-  margin: 2em;
   display: inline-block;
   box-sizing: border-box;
-}
-
-.kudo .header {
-  background-color: red;
-  text-align: center;
-  font-weight: bold;
-  vertical-align: middle;
-  height: 70px;
-  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-  line-height:70px;
-}
-
-.kudo .divisor{
-  margin-top: -5px;
-  height:10px;
-  width:100%;
-  background:url('../imagenes/divisor.png');
-}
-
-.kudo .content {
-  background:url('../imagenes/renglon.jpg');
-  margin: 30px;
-  min-height: 315px;
-  line-height: 36px;
-  text-align: left;
-}
-
-.kudo .firma {
-  text-align: right;
-}
-
-.kudo img {
-  float: right;
-  margin: 0.5em;
-  max-height: 400px;
-  max-width: 250px;
 }
