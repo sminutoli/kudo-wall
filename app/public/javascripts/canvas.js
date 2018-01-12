@@ -39,7 +39,7 @@ Promise.all([f, r, ls]).then(function(values){
         ctx.fillRect(0, headerHeight, canvas.width, canvas.height);
 
         //Linita del header
-        ctx.setLineDash([20]);
+        ctx.setLineDash([40, 25]);
         ctx.lineWidth=10;
         ctx.strokeRect(0, headerHeight, canvas.width, 0);
 
