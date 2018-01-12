@@ -1,9 +1,9 @@
 var kudos = [];
-function dibujarKudo(id, text, to, from){
+function dibujarKudo(id, texto, para, autor){
     kudos.push({
         id: id,
-        text: text,
-        to: to,
-        from: from
+        texto: texto,
+        autor: autor,
+        para: para
     });
 }

@@ -55,14 +55,14 @@ Promise.all([f, r, ls]).then(function(values){
         ctx.textBaseline = 'top';
 
         //Dibujar el texto al rededor
-        var kudoText = "Por " + kudo.text + "\t\t --" + kudo.from;
+        var kudoText = kudo.texto + "\t\t --" + kudo.autor;
         wrapText(ctx, kudoText, padding, headerHeight, logo.width*ratio, logo.height*ratio+headerHeight, canvas.width-padding, 36);
 
         //Texto header
         ctx.strokeStyle = "white";
-        var kudoFrom = "Kudos a " + kudo.from;
-        ctx.strokeText(kudoFrom, padding, 4);
-        ctx.fillText(kudoFrom, padding, 4);
+        var kudoPara = "Kudos para " + kudo.para;
+        ctx.strokeText(kudoPara, padding, 4);
+        ctx.fillText(kudoPara, padding, 4);
         
         //Borde al rededor
         ctx.strokeStyle = "black";
