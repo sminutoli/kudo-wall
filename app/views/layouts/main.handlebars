@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
+
+<script src="javascripts/setup.js"></script>
 <body>
   <header>
       <img class="logo" src="imagenes/10pines-logo.png"/>
@@ -14,6 +16,7 @@
         <img src="imagenes/kudowall-logo.png" />
       </div>
   </header>
+
 
   <div id="main">
     {{{body}}}
@@ -27,7 +30,13 @@
     </p>
     <p>Especialmente, y con amor para 10Pines</p>
   </footer>
+
+
+  <a href="javascript: copyAll();" id="copy">
+      <span>Copy all</span>
+  </a>
 </body>
 
-<script src="javascripts/coloresDeKudos.js"></script>
+<script src="javascripts/copy.js"></script>
+<script src="javascripts/canvas.js"></script>
 </html>

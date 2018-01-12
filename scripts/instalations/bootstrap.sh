@@ -13,11 +13,7 @@ echo "Empezando provisionamiento"
 /vagrant/scripts/instalations/install_mongodb.sh
 
 # Install node
-<<<<<<< HEAD
-/vagrant/scripts/instalations/install_nvm.sh
-=======
 su vagrant -c "/vagrant/scripts/instalations/install_nvm.sh"
->>>>>>> 2db5aab... Vagrant!
 
 # Install yarn
 /vagrant/scripts/instalations/install_yarn.sh
