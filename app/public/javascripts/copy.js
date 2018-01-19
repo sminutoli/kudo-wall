@@ -1,4 +1,5 @@
 function copyAll(){
+    document.getElementById('fart').play();
     var toCopy = document.createElement('div');
     toCopy.contentEditable = true;
     
