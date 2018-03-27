@@ -66,8 +66,8 @@ Kudo.actualizar = function(id, nuevoKudo, cb){
   return Kudo.findByIdAndUpdate(id, nuevoKudo, cb);
 }
 
-Kudo.encontrarUltimos = function(cb){
-  var ultimaSemana = moment().subtract(7, 'days');
+Kudo.encontrarUltimos = function(semanas, cb){
+  var ultimaSemana = moment().subtract(7*semanas, 'days');
   return Kudo.find({
       updated_at: {
         $gte: ultimaSemana.toDate()

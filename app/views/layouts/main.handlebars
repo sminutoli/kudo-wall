@@ -12,11 +12,16 @@
 <body>
   <header>
       <img class="logo" src="imagenes/10pines-logo.png"/>
-      <div>
+      <div id="logo">
         <img src="imagenes/kudowall-logo.png" />
+          <div id="semanas">
+            <form method="GET" action="/">
+              <input type="number" name="semanas" value="1"/>
+              <input type="submit" />
+            </form>
+          </div>
       </div>
   </header>
-
 
   <div id="main">
     {{{body}}}

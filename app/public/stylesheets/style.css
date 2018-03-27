@@ -118,3 +118,11 @@ header .logo {
   display: inline-block;
   box-sizing: border-box;
 }
+
+#semanas {
+  display: none;
+}
+
+#logo:hover #semanas {
+  display: block;
+}
