@@ -11,6 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 3000 #kudo server
   config.vm.network :forwarded_port, guest: 9229, host: 9229 #nodejs Chrome Inspector
   config.vm.network :forwarded_port, guest: 28017, host: 28017 #MongoDB
+  config.vm.network :forwarded_port, guest: 28018, host: 28018 #MongoDB Web
 
   config.vm.network :private_network, ip: "33.33.33.10"
 
