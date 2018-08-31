@@ -8,6 +8,8 @@ services:
       - "3000:3000"
     links:
       - mongo
+    volumes:
+      - ./app:/usr/src/app
     environment:
       - MONGO_URI=mongodb://mongo/kudos
       - WAIT_HOSTS=mongo:27017
