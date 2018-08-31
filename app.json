@@ -1,0 +1,6 @@
+{
+    "name": "Kudo Wall",
+    "description": "A kudo wall integration for Slack",
+    "repository": "https://github.com/10Pines/kudo-wall",
+    "keywords": ["node", "express", "static", "slack", "kudo"]
+  }
