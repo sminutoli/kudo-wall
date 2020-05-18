@@ -10,8 +10,7 @@ var ls = Promise.all(
 );
 
 //Valores comunes
-var maxLogoWidth = 200;
-var headerHeight = 70;
+var maxLogoWidth = 150;
 var lineHeight = 36;
 var padding = 15;
 
@@ -25,6 +24,13 @@ Promise.all([f, r, ls]).then(function(values){
     kudos.forEach(function(kudo){
         var canvas = document.getElementById(kudo.id);
         var ctx = canvas.getContext("2d");
+
+        //Configurar font
+        ctx.font = '24px ' + font.family;
+
+        //Calcular altura de header
+        var kudoPara = "Kudos para " + kudo.para;
+        var headerHeight = calculateHeaderHeight(ctx, kudoPara, padding, 20, canvas.width-padding, lineHeight);
 
         //Elejir color y logo
         var color = "hsl(" + Math.random() * 360 + ", 100%, 75%)";
@@ -51,7 +57,6 @@ Promise.all([f, r, ls]).then(function(values){
                         logo.width*ratio, logo.height*ratio);
 
         //Configurar font
-        ctx.font         = '24px ' + font.family;
         ctx.fillStyle = 'black';
         ctx.textBaseline = 'top';
 
@@ -61,9 +66,12 @@ Promise.all([f, r, ls]).then(function(values){
 
         //Texto header
         ctx.strokeStyle = "white";
-        var kudoPara = "Kudos para " + kudo.para;
-        ctx.strokeText(kudoPara, padding, 20);
-        ctx.fillText(kudoPara, padding, 20);
+        wrapHeader(ctx, kudoPara, padding, 20, canvas.width-padding, lineHeight);
+
+        //Autor dejando un reglón vacío
+        ctx.font= '24px ' + font.family;
+        ctx.fillStyle = 'black';
+        ctx.fillText(" --" + kudo.autor, padding, wrapHeight+ 2*lineHeight);
 
         //Borde al rededor
         ctx.strokeStyle = "black";
@@ -71,12 +79,53 @@ Promise.all([f, r, ls]).then(function(values){
         ctx.lineWidth=4;
         ctx.fillStyle=color;
         ctx.strokeRect(0,0,canvas.width,canvas.height);
-        //Autor dejando un reglón vacío
-        ctx.font= '24px ' + font.family;
-        ctx.fillStyle = 'black';
-        ctx.fillText(" --" + kudo.autor, padding, wrapHeight+ 2*lineHeight);
     });
 });
+
+function calculateHeaderHeight(ctx, texto, x, y, maxWidth, lineHeight) {
+    ctx.setLineDash([]);
+    ctx.lineWidth = 3;
+    var words = texto.split(' ');
+    var line = '';
+    var lines = 1;
+    for (var n = 0; n < words.length; n++) {
+
+        var testLine = line + words[n] + ' ';
+        var metrics = ctx.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth) {
+            line = words[n] + ' ';
+            lines+=1;
+        } else {
+            line = testLine;
+        }
+    }
+    lines+=1
+    return lines*lineHeight;
+}
+
+function wrapHeader(ctx, texto, x, y, maxWidth, lineHeight) {
+    ctx.setLineDash([]);
+    ctx.lineWidth = 3;
+    var words = texto.split(' ');
+    var line = '';
+    for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = ctx.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth) {
+            ctx.strokeText(line, x, y);
+            ctx.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+    ctx.strokeText(line, x, y);
+    ctx.fillText(line, x, y);
+    return y;
+}
 
 function wrapText(ctx, texto, x, y, bbx, bby, maxWidth, lineHeight) {
     ctx.setLineDash([]);
