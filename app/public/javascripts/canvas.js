@@ -83,55 +83,23 @@ Promise.all([f, r, ls]).then(function(values){
 });
 
 function calculateHeaderHeight(ctx, texto, x, y, maxWidth, lineHeight) {
+    return procesarTexto(ctx, texto, x, y, maxWidth, lineHeight).lines*lineHeight
+}
+
+function wrapHeader(ctx, texto, x, y, maxWidth, lineHeight) {
+    return procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, true, true).y
+}
+
+function wrapText(ctx, texto, x, y, bbx, bby, maxWidth, lineHeight) {
+    return procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, true, false, bbx, bby).y
+}
+
+function procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, fillText=false, strokeTest=false, bbx=0, bby=0) {
     ctx.setLineDash([]);
     ctx.lineWidth = 3;
     var words = texto.split(' ');
     var line = '';
     var lines = 1;
-    for (var n = 0; n < words.length; n++) {
-
-        var testLine = line + words[n] + ' ';
-        var metrics = ctx.measureText(testLine);
-        var testWidth = metrics.width;
-        if (testWidth > maxWidth) {
-            line = words[n] + ' ';
-            lines+=1;
-        } else {
-            line = testLine;
-        }
-    }
-    lines+=1
-    return lines*lineHeight;
-}
-
-function wrapHeader(ctx, texto, x, y, maxWidth, lineHeight) {
-    ctx.setLineDash([]);
-    ctx.lineWidth = 3;
-    var words = texto.split(' ');
-    var line = '';
-    for (var n = 0; n < words.length; n++) {
-        var testLine = line + words[n] + ' ';
-        var metrics = ctx.measureText(testLine);
-        var testWidth = metrics.width;
-        if (testWidth > maxWidth) {
-            ctx.strokeText(line, x, y);
-            ctx.fillText(line, x, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-        } else {
-            line = testLine;
-        }
-    }
-    ctx.strokeText(line, x, y);
-    ctx.fillText(line, x, y);
-    return y;
-}
-
-function wrapText(ctx, texto, x, y, bbx, bby, maxWidth, lineHeight) {
-    ctx.setLineDash([]);
-    ctx.lineWidth = 3;
-    var words = texto.split(' ');
-    var line = '';
 
     for (var n = 0; n < words.length; n++) {
         var maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
@@ -139,16 +107,21 @@ function wrapText(ctx, texto, x, y, bbx, bby, maxWidth, lineHeight) {
         var metrics = ctx.measureText(testLine);
         var testWidth = metrics.width;
         if (testWidth > maxLineWidth) {
-            ctx.fillText(line, x, y);
+            if (strokeTest) ctx.strokeText(line, x, y);
+            if (fillText) ctx.fillText(line, x, y);
             line = words[n] + ' ';
             y += lineHeight;
             maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
+            lines+=1;
         } else {
             line = testLine;
         }
     }
-    ctx.fillText(line, x, y);
-    return y;
+    if (strokeTest) ctx.strokeText(line, x, y);
+    if (fillText) ctx.fillText(line, x, y);
+    lines+=1
+
+    return { lines: lines, y: y }
 }
 
 function load(url) {
