@@ -53,5 +53,12 @@ describe('Kudo', function(){
             });
           });
       })
+      it('reemplazar emoticones de slack por su equivalente emoticon unified', function (done) {
+        Kudo.armar('para mi por tantas cosas :laughing:', 'yo', function (kudoCreado) {
+          expectKudo(kudoCreado).to.kudo('yo', 'por tantas cosas 😆', 'mi');
+          done();
+        }
+        )
+      })
     })
 });
