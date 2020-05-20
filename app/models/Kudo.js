@@ -29,7 +29,7 @@ Kudo.armar = function(texto, autor, cb){
     var mensaje = interpretar(texto);
 
     var elegirImagen = function(){
-      return Math.floor(Math.random()*6);
+      return Math.floor(Math.random()*11);
     };
 
     var kudo = {
