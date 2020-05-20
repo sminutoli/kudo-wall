@@ -1,4 +1,5 @@
 var sanitizeHtml = require('sanitize-html');
+var emoji = require("node-emoji");
 
 module.exports =  function(mensaje){
     var sinHTML = sanitizeHtml(mensaje, {
@@ -9,5 +10,5 @@ module.exports =  function(mensaje){
       }
     });
 
-    return sinHTML.replace(/&quot;/g, '"');
+  return emoji.emojify(sinHTML);
 };
