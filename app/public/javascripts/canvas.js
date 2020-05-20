@@ -1,7 +1,7 @@
 //Preparar los fonts y artes
 var f = new FontFace('OpenDyslexic', 'url(\'/font/OpenDyslexic-Regular.otf\')').load();
 var r = load('/imagenes/renglongris.png');
-for(var i,l=[i=0];i<5;l[i++]=i);
+for(var i,l=[i=0];i<10;l[i++]=i);
 
 var ls = Promise.all(
     l.map(function(i){
@@ -10,7 +10,7 @@ var ls = Promise.all(
 );
 
 //Valores comunes
-var maxLogoWidth = 150;
+var maxLogoWidth = 180;
 var lineHeight = 36;
 var padding = 15;
 
@@ -53,7 +53,7 @@ Promise.all([f, r, ls]).then(function(values){
         //Dibujar logo
         var ratio = maxLogoWidth / logo.width;
         ctx.drawImage(logo,
-                        canvas.width - maxLogoWidth, headerHeight+padding,
+                        canvas.width - maxLogoWidth - padding/3, headerHeight+padding,
                         logo.width*ratio, logo.height*ratio);
 
         //Configurar font
