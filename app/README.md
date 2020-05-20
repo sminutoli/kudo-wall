@@ -1,6 +1,6 @@
 # Development
 
-Run `yarn dev` to run the kudo-wall.
+Run `npm run dev` to run the kudo-wall.
 You should have a MongoDB service running
 
 To debugg, with Chorme Dev Tools, start the server, open [chrome://inspect/#devices](chrome://inspect/#devices) *and click *Open dedicated DevTools for Node*
