@@ -29,7 +29,7 @@ Promise.all([f, r, ls]).then(function(values){
         ctx.font = '24px ' + font.family;
 
         //Calcular altura de header
-        var kudoPara = "Kudos para " + kudo.para.replace(/&quot;/g, '"');
+        var kudoPara = "Kudos para " + kudo.para.replace(/&amp;quot;/g, '"');
         var headerHeight = calculateHeaderHeight(ctx, kudoPara, padding, 20, canvas.width-padding, lineHeight);
 
         //Elejir color y logo
@@ -61,7 +61,7 @@ Promise.all([f, r, ls]).then(function(values){
         ctx.textBaseline = 'top';
 
         //Dibujar el texto al rededor
-        var kudoText = kudo.texto.replace(/&quot;/g, '"');
+        var kudoText = kudo.texto.replace(/&amp;quot;/g, '"');
         var wrapHeight = wrapText(ctx, kudoText, padding, headerHeight+lineHeight, logo.width*ratio, logo.height*ratio+headerHeight, canvas.width-padding, lineHeight);
 
         //Texto header
