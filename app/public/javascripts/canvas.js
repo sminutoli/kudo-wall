@@ -109,10 +109,10 @@ function procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, fillText = false,
   let lines = 1;
 
   for (let n = 0; n < words.length; n++) {
-    let maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
+    let maxLineWidth = y > bby ? maxWidth : maxWidth - 230;
     const testLine = line + words[n] + ' ';
-    const wordWidth = isEmoji(words[n]) ? ctx.measureText('   ').width : ctx.measureText(words[n]).width
-    testWidth = testWidth + wordWidth + ctx.measureText(' ').width;
+    const wordWidth = isEmoji(words[n]) ? ctx.measureText('aaa').width : ctx.measureText(words[n]).width
+    testWidth = testWidth + wordWidth + ctx.measureText('a').width;
     if (testWidth > maxLineWidth) {
       writeText(strokeTest, ctx, line, x, y, fillText);
       line = words[n] + ' ';
