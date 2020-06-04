@@ -4,7 +4,7 @@ const f = new FontFace('OpenDyslexic', 'url(\'/font/OpenDyslexic-Regular.otf\')'
 const r = load('/imagenes/renglongris.png');
 let i;
 const l = [i = 0];
-for (; i < 10; l[i++] = i) ;
+for (; i < 11; l[i++] = i) ;
 
 const ls = Promise.all(
   l.map(function (i) {
@@ -100,25 +100,26 @@ function wrapText(ctx, texto, x, y, bbx, bby, maxWidth, lineHeight) {
   return procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, true, false, bbx, bby).y
 }
 
-
 function procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, fillText = false, strokeTest = false, bbx = 0, bby = 0) {
   ctx.setLineDash([]);
   ctx.lineWidth = 3;
   const words = texto.replace(/::/g, ': :').split(' ');
   let line = '';
+  let testWidth = 0
   let lines = 1;
 
   for (let n = 0; n < words.length; n++) {
     let maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
     const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    const testWidth = metrics.width;
+    const wordWidth = isEmoji(words[n]) ? ctx.measureText('   ').width : ctx.measureText(words[n]).width
+    testWidth = testWidth + wordWidth + ctx.measureText(' ').width;
     if (testWidth > maxLineWidth) {
       writeText(strokeTest, ctx, line, x, y, fillText);
       line = words[n] + ' ';
       y += lineHeight;
       maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
       lines += 1;
+      testWidth = 0;
     } else {
       line = testLine;
     }
@@ -142,7 +143,7 @@ function writeText(strokeTest, ctx, line, x, y, fillText) {
 async function fillTextOrEmoji(ctx, line, x, y) {
   const words = line.split(' ');
   for (let n = 0; n < words.length; n++) {
-    if (words[n].startsWith(':')) {
+    if (isEmoji(words[n])) {
       const emojiId = words[n].replace(/:/g, '')
       await printCustomEmoji(ctx, emojiId, x, y);
       x += ctx.measureText('    ').width
@@ -152,6 +153,10 @@ async function fillTextOrEmoji(ctx, line, x, y) {
       x += ctx.measureText(words[n] + ' ').width
     }
   }
+}
+
+function isEmoji(word) {
+  return (/^:(.*:)?$/).test(word);
 }
 
 async function printCustomEmoji(ctx, emojiId, x, y) {
