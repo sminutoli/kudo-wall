@@ -105,21 +105,19 @@ function procesarTexto(ctx, texto, x, y, maxWidth, lineHeight, fillText = false,
   ctx.lineWidth = 3;
   const words = texto.replace(/::/g, ': :').split(' ');
   let line = '';
-  let testWidth = 0
   let lines = 1;
 
   for (let n = 0; n < words.length; n++) {
-    let maxLineWidth = y > bby ? maxWidth : maxWidth - 230;
+    let maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
     const testLine = line + words[n] + ' ';
-    const wordWidth = isEmoji(words[n]) ? ctx.measureText('aaa').width : ctx.measureText(words[n]).width
-    testWidth = testWidth + wordWidth + ctx.measureText('a').width;
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
     if (testWidth > maxLineWidth) {
       writeText(strokeTest, ctx, line, x, y, fillText);
       line = words[n] + ' ';
       y += lineHeight;
       maxLineWidth = y > bby ? maxWidth : maxWidth - bbx;
       lines += 1;
-      testWidth = 0;
     } else {
       line = testLine;
     }
