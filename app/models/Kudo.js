@@ -66,13 +66,17 @@ Kudo.actualizar = function(id, nuevoKudo, cb){
   return Kudo.findByIdAndUpdate(id, nuevoKudo, cb);
 }
 
-Kudo.encontrarUltimos = function(semanas, cb){
-  var ultimaSemana = moment().subtract(7*semanas, 'days');
-  return Kudo.find({
+Kudo.encontrarKudos = function (semanas, kudoPara, kudoPor, cb) {
+  var ultimaSemana = moment().subtract(7 * semanas, "days");
+  return Kudo.find(
+    {
       updated_at: {
-        $gte: ultimaSemana.toDate()
-      }
-    }, cb);
-}
+        $gte: ultimaSemana.toDate(),
+      },
+      para: { $regex: kudoPara, $options: "i" },
+    },
+    cb
+  );
+};
 
 module.exports = Kudo;
