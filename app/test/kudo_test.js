@@ -46,7 +46,7 @@ describe('Kudo', function(){
       it('crear dos kudos repetidos, y que solo aparezca uno', function(done){
           Kudo.armar('para mi por tantas cosas', 'yo', function(kudoCreado){
             Kudo.armar('para mi por tantas cosas', 'yo', function(kudoDuplicado){
-              Kudo.encontrarKudos(1, "", function(err, kudos){
+              Kudo.encontrarUltimos(1, function(err, kudos){
                 expect(kudos).to.have.length(1);
                 done();
               });
