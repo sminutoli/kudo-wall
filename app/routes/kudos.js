@@ -16,14 +16,14 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.get('/', function(req, res, next){
-  debugger;
+router.get("/", function (req, res, next) {
   const semanas = req.query.semanas || 1;
-  Kudo.encontrarUltimos(semanas, function (err, kudos) {
+  const kudoPara = req.query.kudoPara || "";
+  Kudo.encontrarKudos(semanas, kudoPara, function (err, kudos) {
     if (err) return next(err);
 
-    res.render('index', { kudos: kudos });
-  }).sort({updated_at: 'desc'});
+    res.render("index", { kudos: kudos });
+  }).sort({ updated_at: "desc" });
 });
 
 router.post('/nuevo', function(req, res, next) {
