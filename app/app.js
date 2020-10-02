@@ -4,8 +4,6 @@ var db = require('./server/db')
 
 bluebird.resolve()
 .then(
-  db.start
-).then(
   app.start
 )
 .catch(err => {

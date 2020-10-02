@@ -2,7 +2,8 @@ var mongoose = require('mongoose')
   , moment = require('moment')
   , Schema = mongoose.Schema
   , interpretar = require('../helpers/interpretar')
-  , sanitizar = require('../helpers/sanitizar');
+  , sanitizar = require('../helpers/sanitizar')
+  , config = require('../config');
 
 const {GoogleSpreadsheet} = require('google-spreadsheet')
 
@@ -72,7 +73,7 @@ Kudo.encontrarUltimos = async function(){
     const getSheetBy= async(index) => {
         const doc = new GoogleSpreadsheet('1jT88W4FYi3oAakE6AGASPUdlQtRqGDXKo-m3i5OxObQ')
 
-        await doc.useServiceAccountAuth(require('../../config.json'));
+        await doc.useServiceAccountAuth(config.credentials);
         await doc.loadInfo(); // loads document properties and worksheets
         return doc.sheetsByIndex[index];
     }

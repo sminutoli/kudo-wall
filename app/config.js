@@ -9,5 +9,9 @@ module.exports = {
     },
     'application': {
         'port': process.env.PORT || 3000
+    },
+    'credentials': {
+        'client_email': process.env.client_email,
+        'private_key': process.env.private_key
     }
 };

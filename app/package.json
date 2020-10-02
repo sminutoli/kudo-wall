@@ -4,6 +4,7 @@
   "private": true,
   "main": "app",
   "scripts": {
+    "heroku-postbuild": " npm install",
     "start": "node app.js",
     "dev": "nodemon --inspect=0.0.0.0:9229",
     "test": "mocha --reporter list"
