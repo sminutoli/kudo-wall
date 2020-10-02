@@ -16,14 +16,11 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.get('/', function(req, res, next){
-  debugger;
+router.get('/', async function(req, res, next){
   const semanas = req.query.semanas || 1;
-  Kudo.encontrarUltimos(semanas, function (err, kudos) {
-    if (err) return next(err);
-
-    res.render('index', { kudos: kudos });
-  }).sort({updated_at: 'desc'});
+  const kudos = await Kudo.encontrarUltimos(semanas)
+  console.log('kuditos' + JSON.stringify(kudos))
+  res.render('index', { kudos: kudos });
 });
 
 router.post('/nuevo', function(req, res, next) {

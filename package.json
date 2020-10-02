@@ -3,5 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "postinstall": "npm install --prefix app"
+  },
+  "dependencies": {
+    "google-spreadsheet": "^3.0.13"
   }
 }
