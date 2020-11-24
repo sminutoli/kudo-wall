@@ -13,5 +13,10 @@ module.exports = {
     'credentials': {
         'client_email': process.env.client_email,
         'private_key': process.env.private_key
+    },
+    'person': {
+        'name': process.env.person_name,
+        'spreadsheet_id': process.env.spreadsheet_id
     }
+
 };

@@ -71,7 +71,7 @@ Kudo.actualizar = function(id, nuevoKudo, cb){
 
 Kudo.encontrarUltimos = async function(){
     const getSheetBy= async(index) => {
-        const doc = new GoogleSpreadsheet('1jT88W4FYi3oAakE6AGASPUdlQtRqGDXKo-m3i5OxObQ')
+        const doc = new GoogleSpreadsheet(config.person.spreadsheet_id)
 
         await doc.useServiceAccountAuth(config.credentials);
         await doc.loadInfo(); // loads document properties and worksheets
@@ -91,7 +91,7 @@ Kudo.crearKudoParaNico = function(quien,mensaje,index){
     return {
         id: index,
         autor: quien,
-        para: 'NicoPS',
+        para: config.person.name,
         por: mensaje,
         imagen: elegirImagen()
     };
