@@ -3,4 +3,4 @@ services:
 language: node_js
 node_js:
   - "12"
-script: cd app && yarn install && yarn test
+script: cd app && npm install --no-optional && npm test
