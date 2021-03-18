@@ -3,7 +3,7 @@
 Run `npm run dev` to run the kudo-wall.
 You should have a MongoDB service running
 
-To debugg, with Chorme Dev Tools, start the server, open [chrome://inspect/#devices](chrome://inspect/#devices) *and click *Open dedicated DevTools for Node*
+To debug, with Chorme Dev Tools, start the server, open [chrome://inspect/#devices](chrome://inspect/#devices) *and click *Open dedicated DevTools for Node*
 
 ### Environment
 To run, you need to configure tese environment variables:
