@@ -17,7 +17,6 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next){
-  debugger;
   const semanas = req.query.semanas || 1;
   Kudo.encontrarUltimos(semanas, function (err, kudos) {
     if (err) return next(err);

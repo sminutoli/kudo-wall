@@ -3,6 +3,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , exphbs  = require('express-handlebars')
+  , Handlebars = require('handlebars')
+  , allowInsecurePrototypeAccess = require('@handlebars/allow-prototype-access').allowInsecurePrototypeAccess
   , hbshelpers = require('../lib/handlebarsHelpers')
   , favicon = require('serve-favicon')
   , logger = require('morgan')
@@ -20,7 +22,8 @@ module.exports.start = function(){
     app.set('views', path.join(__dirname, '..', 'views'));
     app.engine('handlebars', exphbs({
                                 defaultLayout: 'main',
-                                helpers: hbshelpers
+                                helpers: hbshelpers,
+                                handlebars: allowInsecurePrototypeAccess(Handlebars)
                             }));
     app.set('view engine', 'handlebars');
     app.use(favicon(__dirname + '/../public/favicon.ico'));
