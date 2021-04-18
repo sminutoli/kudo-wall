@@ -1,5 +1,6 @@
 var sanitizeHtml = require('sanitize-html');
 var emoji = require("node-emoji");
+var htmlEntities = require("html-entities");
 
 module.exports =  function(mensaje){
     var sinHTML = sanitizeHtml(mensaje, {
@@ -10,5 +11,5 @@ module.exports =  function(mensaje){
       }
     });
 
-  return emoji.emojify(sinHTML);
+  return htmlEntities.decode(emoji.emojify(sinHTML));
 };

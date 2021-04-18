@@ -60,5 +60,11 @@ describe('Kudo', function(){
         }
         )
       })
+      it('no codificar símbolos como character entity references', function (done) {
+        Kudo.armar('para mi por <b>< > &</b> &lt;script&gt;hackerman&lt/script&gt;', 'yo', function (kudoCreado) {
+          expectKudo(kudoCreado).to.kudo('yo', 'por < > & &lt;script&gt;hackerman&lt/script&gt;', 'mi');
+          done();
+        })
+      })
     })
 });
