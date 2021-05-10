@@ -33,7 +33,7 @@ router.post('/nuevo', autenticarWebhookDeSlack, function(req, res, next) {
               "text": "Gracias por dejar tu Kudo!",
               "attachments": [{
                   "title":"Editar / Borrar el nuevo Kudo",
-                  "title_link": `http://${process.env.URL || 'localhost:3000'}/${kudoCreado._id}`
+                  "title_link": `${process.env.URL}/${kudoCreado._id}`
               }]
       });
     });

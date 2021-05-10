@@ -43,13 +43,13 @@ const autenticarConBackoffice = express.Router()
         if (req.session?.authenticated) {
             next();
         } else {
-            const callbackUrl = `https://${process.env.URL}/auth/callback`;
-            res.redirect(`https://${process.env.BACKOFFICE_URL}/auth/sign_in?redirect_url=${callbackUrl}&app_id=kudowall`)
+            const callbackUrl = `${process.env.URL}/auth/callback`;
+            res.redirect(`https://${process.env.BACKOFFICE_HOST}/auth/sign_in?redirect_url=${callbackUrl}&app_id=kudowall`)
         }
     });
 
 const autenticarWebhookDeSlack = (req, res, next) => {
-    if (req.body.token === (process.env.TOKEN || 'Tis a token')) {
+    if (req.body.token === process.env.TOKEN) {
         next();
     } else {
         res.send('Hmmmmm.... algo no está bien').status(401);
