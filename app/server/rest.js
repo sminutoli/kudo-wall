@@ -8,11 +8,12 @@ var express = require('express')
   , hbshelpers = require('../lib/handlebarsHelpers')
   , favicon = require('serve-favicon')
   , logger = require('morgan')
-  , connect        = require('connect')
   , methodOverride = require('method-override')
   , bodyParser = require('body-parser')
   , errorHandler = require('errorhandler')
-  , config = require('../config');
+  , config = require('../config')
+  , {backofficeCallback} = require('../routes/auth');
+
 
 module.exports.start = function(){
     var app = express();
@@ -33,7 +34,7 @@ module.exports.start = function(){
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.static(path.join(__dirname, '..', 'public')));
 
-
+    app.use('/auth/callback', backofficeCallback);
     app.use('/', kudos);
 
     // development only
