@@ -40,7 +40,7 @@ const backofficeCallback = express.Router()
 const autenticarConBackoffice = express.Router()
     .use(sessionMiddleware)
     .use((req, res, next) => {
-        if (req.session?.authenticated) {
+        if (req.session && req.session.authenticated) {
             next();
         } else {
             const callbackUrl = `${process.env.URL}/auth/callback`;
